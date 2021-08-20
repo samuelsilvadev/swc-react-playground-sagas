@@ -1,29 +1,25 @@
-import { useEffect, useState } from "react";
-import { fetchRecipeDetail } from "services/recipe";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { FETCH_RECIPE } from "store/recipe/actions";
+import {
+  getRecipe,
+  getRecipeError,
+  getRecipeLoading,
+} from "store/recipe/selectors";
 
 function useRecipe(id) {
-  const [recipe, setRecipe] = useState();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(undefined);
+  const dispatch = useDispatch();
+
+  const recipe = useSelector(getRecipe);
+  const loading = useSelector(getRecipeLoading);
+  const error = useSelector(getRecipeError);
 
   useEffect(() => {
     if (id) {
-      setLoading(true);
-      setRecipe(undefined);
-      setError(undefined);
-
-      fetchRecipeDetail(id)
-        .then((loadedRecipe) => {
-          setRecipe(loadedRecipe);
-        })
-        .catch((error) => {
-          setError(error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      dispatch({ type: FETCH_RECIPE, payload: { id } });
     }
-  }, [id]);
+  }, [id, dispatch]);
 
   return {
     loading,

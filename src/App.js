@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { Provider } from "react-redux";
 import PropTypes from "prop-types";
 import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 
@@ -7,6 +8,7 @@ import Recipes from "components/Recipes";
 import Recipe from "components/Recipe";
 import useIsMobile from "hooks/useIsMobile";
 import { styled, global } from "config/css";
+import { buildStore } from "store/buildStore";
 
 const createGlobalStyles = global({
   "*": {
@@ -130,18 +132,20 @@ function App() {
   const RoutesWrapper = isMobile ? Switch : Fragment;
 
   return (
-    <BrowserRouter>
-      <Main>
-        <RoutesWrapper>
-          <Route exact={isMobile} path="/">
-            <RecipesStyled />
-          </Route>
-          <Route exact={isMobile} path="/:id">
-            <RecipesWrapper hasBackButton={isMobile} />
-          </Route>
-        </RoutesWrapper>
-      </Main>
-    </BrowserRouter>
+    <Provider store={buildStore()}>
+      <BrowserRouter>
+        <Main>
+          <RoutesWrapper>
+            <Route exact={isMobile} path="/">
+              <RecipesStyled />
+            </Route>
+            <Route exact={isMobile} path="/:id">
+              <RecipesWrapper hasBackButton={isMobile} />
+            </Route>
+          </RoutesWrapper>
+        </Main>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
