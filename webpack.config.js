@@ -28,6 +28,7 @@ module.exports = {
       components: path.resolve(__dirname, "src/components/"),
       hooks: path.resolve(__dirname, "src/hooks/"),
       services: path.resolve(__dirname, "src/services/"),
+      store: path.resolve(__dirname, "src/store/"),
       mocks: path.resolve(__dirname, "src/mocks/"),
       utils: path.resolve(__dirname, "src/utils/"),
     },
