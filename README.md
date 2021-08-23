@@ -3,7 +3,7 @@
 <br />
 <br />
 
-<h1 align="center">RecipeViewer</h1>
+<h1 align="center">RecipeViewer (With Sagas ♻️)</h1>
 <br />
 
 ## Table of Contents
@@ -20,8 +20,7 @@
 
 ## About The Project
 
-This project started to be a simple comparison between `babel` and `swc`, however it evolved to much more, along the way I realized I could play with API mocks using `msw`, e2e tests with `cypress`, CSS-in-JS using `@stitches`, and so I did.
-The culmination was a small recipe viewer using best practices of accessibility, fully responsive, with unit and e2e tests and with the proper tooling to improve DX.
+This project is a copy of [recipe-viewer](https://github.com/samuelsilvadev/swc-react-playground) but now made with redux-sagas to control side effects in the application.
 
 ### Built With
 
@@ -31,6 +30,8 @@ The culmination was a small recipe viewer using best practices of accessibility,
 - @testing-library
 - cypress
 - msw
+- Redux
+- Redux Sagas
 
 ## Getting Started
 
@@ -48,7 +49,7 @@ You can follow the installation guide from the official documentation
 1. Clone the repo
 
 ```sh
-git clone https://github.com/samuelsilvadev/swc-react-playground.git
+git clone https://github.com/samuelsilvadev/swc-react-playground-sagas.git
 ```
 
 2. Install NPM packages
