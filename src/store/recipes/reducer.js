@@ -1,4 +1,8 @@
-import { FETCH_RECIPE, FETCH_RECIPE_ERROR, FETCH_RECIPE_OK } from "./actions";
+import {
+  FETCH_RECIPES,
+  FETCH_RECIPES_ERROR,
+  FETCH_RECIPES_OK,
+} from "./actions";
 
 const initialState = {
   data: null,
@@ -6,15 +10,15 @@ const initialState = {
   loading: null,
 };
 
-function recipeReducer(recipe = initialState, action) {
-  if (action.type === FETCH_RECIPE) {
+function recipesReducer(recipes = initialState, action) {
+  if (action.type === FETCH_RECIPES) {
     return {
       ...initialState,
       loading: true,
     };
   }
 
-  if (action.type === FETCH_RECIPE_OK) {
+  if (action.type === FETCH_RECIPES_OK) {
     return {
       ...initialState,
       loading: false,
@@ -22,7 +26,7 @@ function recipeReducer(recipe = initialState, action) {
     };
   }
 
-  if (action.type === FETCH_RECIPE_ERROR) {
+  if (action.type === FETCH_RECIPES_ERROR) {
     return {
       ...initialState,
       loading: false,
@@ -30,7 +34,7 @@ function recipeReducer(recipe = initialState, action) {
     };
   }
 
-  return recipe;
+  return recipes;
 }
 
-export { recipeReducer };
+export { recipesReducer };

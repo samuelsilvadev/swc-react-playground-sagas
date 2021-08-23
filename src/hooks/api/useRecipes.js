@@ -1,28 +1,23 @@
-import { useEffect, useState } from "react";
-import { fetchAllRecipes } from "services/recipe";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { FETCH_RECIPES } from "store/recipes/actions";
+import {
+  getRecipes,
+  getRecipesError,
+  getRecipesLoading,
+} from "store/recipes/selectors";
 
 function useRecipes() {
-  const [recipes, setRecipes] = useState(undefined);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(undefined);
+  const dispatch = useDispatch();
+
+  const recipes = useSelector(getRecipes);
+  const loading = useSelector(getRecipesLoading);
+  const error = useSelector(getRecipesError);
 
   useEffect(() => {
-    setLoading(true);
-
-    (async () => {
-      try {
-        const loadedRecipes = await fetchAllRecipes();
-
-        if (Array.isArray(loadedRecipes.results)) {
-          setRecipes(loadedRecipes.results);
-        }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
+    dispatch({ type: FETCH_RECIPES });
+  }, [dispatch]);
 
   return {
     loading,
